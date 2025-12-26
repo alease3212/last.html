@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Александра Герасимчук — Фотограф</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000; color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      padding: 16px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0; left: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.6));
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffcc00;
+      letter-spacing: 1px;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    nav a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      padding: 0 14px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      opacity: 0.9;
+      border-radius: 20px;
+    }
+    nav a:hover { color: #ffcc00; opacity: 1; }
+    nav a.cta {
+      background-color: #ffcc00;
+      color: #000;
+      font-weight: 700;
+      border: 1px solid #caa700;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+    nav a.cta:hover {
+      background-color: #ffd633;
+      box-shadow: 0 0 10px #ffcc00;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 140px 60px 80px; min-height: 92vh; gap: 40px;
+    }
+    .hero-image { max-width: 40%; margin-left: 50px; display: flex; justify-content: center; }
+    .hero-image img { width: 100%; max-width: 420px; border-radius: 22px; object-fit: cover; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+    .hero-text { max-width: 55%; text-align: right; }
+    .hero-text h1 { font-size: 52px; line-height: 1.2; margin: 0; font-weight: 700; }
+    .hero-text h1 span { color: #ffcc00; }
+    .hero-text p { margin-top: 18px; font-size: 20px; color: #ccc; max-width: 620px; margin-left: auto; }
+    .hero-actions { display: flex; gap: 16px; margin-top: 26px; flex-wrap: wrap; justify-content: flex-end; }
+    .button {
+      display: inline-block; padding: 14px 32px; background-color: #ffcc00; color: #000;
+      font-weight: 700; text-decoration: none; border-radius: 30px; font-size: 16px;
+      border: 1px solid #caa700;
+
+    }
+
+ 
+.button:hover {
+  background-color: #ffd633;
+  box-shadow: 0 0 10px #ffcc00;
+}
+    .button.secondary {
+      background-color: transparent; color: #ffcc00; border: 2px solid #ffcc00;
+      box-shadow: 0 0 8px rgba(255,204,0,0.7); animation: pulse 1.5s infinite;
+      transition:  0.3s ease;
+    }
+    .button.secondary:hover { background-color: #ffcc00; color: #000; box-shadow: 0 0 12px #ffcc00; }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 8px rgba(255,204,0,0.7); }
+      50% { box-shadow: 0 0 16px rgba(255,204,0,1); }
+      100% { box-shadow: 0 0 8px rgba(255,204,0,0.7); }
+    }
+
+    section { padding: 60px 20px; }
+    section h2 { text-align: center; font-size: 32px; margin-bottom: 20px; color: #ffcc00; }
+
+    .services { background-color: #1a1a1a; }
+    .portfolio { background-color: #222; }
+    .why-me { background-color: #2a2a2a; }
+    .form-section { background-color: #111; }
+
+    /* Services cards */
+    .service-list {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; max-width: 1000px; margin: 0 auto;
+    }
+    .service-card {
+      background-color: #1a1a1a; border-radius: 12px; padding: 20px; text-align: center;
+      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+    .service-card img { width: 100%; height: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px; }
+    .service-card h3 { font-size: 20px; color: #ffcc00; margin-bottom: 10px; }
+    .service-card p { font-size: 15px; color: #ccc; margin-bottom: 12px; line-height: 1.5; }
+    .price { font-weight: bold; color: #fff; font-size: 16px; margin-bottom: 12px; }
+    .btn { display: inline-block; padding: 10px 18px; background-color: #ffcc00; color: #000; font-weight: bold; border-radius: 8px; text-decoration: none; transition: 0.3s; }
+    .btn:hover { background-color: #ffd633; box-shadow: 0 0 12px #ffcc00; }
+
+    /* Portfolio grid */
+    .portfolio-filters { text-align: center; margin-bottom: 30px; }
+    .portfolio-filters button {
+      margin: 0 8px; padding: 10px 18px; border: 1px solid #ffcc00; background: transparent;
+      color: #ffcc00; border-radius: 6px; cursor: pointer; transition: 0.3s;
+    }
+    .portfolio-filters button:hover { background: #ffcc00; color: #000; }
+    .portfolio-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px; max-width: 1200px; margin: 0 auto;
+    }
+    .portfolio-item img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s ease;
+    }
+    .portfolio-item img:hover { transform: scale(1.05); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center;
+    }
+    .lightbox-content { max-width: 90%; max-height: 90%; border-radius: 12px; }
+    .close {
+      position: absolute; top: 20px; right: 40px; font-size: 40px; color: #fff; cursor: pointer;
+    }
+
+  
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .reason-card {
+      background: #1f1f1f;
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+     
+    }
+    .reason-card:hover {
+      transform: translateY(0px);
+      box-shadow: 0 10px 28px rgba(255,204,0,0.4);
+    }
+    .reason-card .icon {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 12px;
+      color: #ffcc00;
+    }
+    .reason-card h3 {
+      font-size: 20px;
+      color: #ffcc00;
+      margin-bottom: 10px;
+    }
+    .reason-card p {
+      font-size: 15px;
+      color: #ddd;
+      line-height: 1.5;
+    }
+
+    /* Form */
+    form { max-width: 600px; margin: 0 auto; display: grid; gap: 16px; }
+    input, textarea {
+      width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333;
+      background-color: #151515; color: #fff; font-size: 16px;
+    }
+    textarea { min-height: 120px; }
+   button {
+  padding: 14px;
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+button:hover {
+  background-color: #ffd633;
+  box-shadow: 0 0 12px #ffcc00; 
+}
+
+.burger.open {
+  color: #ffd633;
+  transform: rotate(90deg);
+  transition: 0.3s;
+}
+
+nav a.active {
+  color: #ffcc00;
+  border-bottom: 2px solid #ffcc00;
+}
+
+
+
+
+
+/*  (до 1024px) */
+@media (max-width: 1024px) {
+  header {
+    padding: 12px 30px;
+  }
+  nav {
+    gap: 18px;
+  }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 120px 30px 60px;
+  }
+  .hero-image {
+    max-width: 70%;
+    margin: 0 auto 30px;
+  }
+  .hero-text {
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .service-list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .service-card img { max-height: 240px;}
+}
+
+header { width: 100%; padding: 16px 30px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.9); z-index: 1000; } nav { display: flex; gap: 20px; } .burger { display: none; /* скрыт на больших экранах */ font-size: 28px; color: #ffcc00; cursor: pointer; }
+
+/* (до 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 20px;
+  }
+  nav {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  nav a {
+    font-size: 13px;
+    padding: 8px 12px;
+    height: auto;
+  }
+  .hero-text h1 {
+    font-size: 36px;
+  }
+  .hero-text p {
+    font-size: 16px;
+  }
+  .hero-image {
+    max-width: 90%;
+  }
+  .service-list {
+    grid-template-columns: 1fr; 
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr; 
+  }
+  .reasons {
+    grid-template-columns: 1fr; 
+  }
+  form {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .service-card img { max-height: 200px; }
+
+  nav { display: none; flex-direction: column; position: absolute; top: 60px; right: 0; background: rgba(0,0,0,0.95); width: 100%; padding: 20px; gap: 16px; } nav.active { display: flex; /* показываем при клике */ } .burger { display: block; /* показываем бургер */ } nav a { text-align: center; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+}
+
+/* (до 480px) */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 28px;
+  }
+  .hero-text p {
+    font-size: 14px;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr; 
+  }
+  .hero-image {
+    max-width: 100%;
+  }
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .button, .btn, nav a.cta {
+    width: 100%;
+    text-align: center;
+  }
+
+.service-card img { max-width: 100%; height: auto; object-fit: cover; border-radius: 10px; box-shadow: none; /* убираем тень, если она мешает восприятию */ z-index: 1; /* гарантируем, что фото не перекроет фон */ position: relative; } .service-card { overflow: hidden; /* предотвращаем выход изображения за границы */ background-color: #1a1a1a; /* фон сохраняется */ position: relative; z-index: 0; }
+
+.portfolio-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 0 10px; } .portfolio-filters button { flex: 1 1 40%; /* каждая кнопка занимает ~40% ширины */ min-width: 120px; max-width: 160px; text-align: center; padding: 10px; font-size: 14px; white-space: nowrap; }
+  
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">GERASIMCHUK.PHOTO</div>
+    
+    <nav>
+      <a href="#portfolio">Портфолио</a>
+
+      <a href="#services">Услуги</a>
+      <a href="#skills">Навыки</a>
+      <a href="#about">Обо мне</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="cta">ЗАКАЗАТЬ СЪЕМКУ</a>
+    </nav>
+    <div class="burger" id="burger">&#9776;</div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-image">
+      <img src="1.jpg" alt="Портрет Александры" />
+    </div>
+    <div class="hero-text">
+      <h1><span>ФОТОГРАФ</span><br>АЛЕКСАНДРА ГЕРАСИМЧУК</h1>
+      <p>«Я показываю людей» — портреты, мода и визуальные истории, где свет и характер говорят сами за себя.</p>
+      <div class="hero-actions">
+        <a href="#portfolio" class="button">Смотреть портфолио</a>
+        <a href="#contact" class="button secondary">Записаться на съёмку</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <h2>Услуги</h2>
+    <div class="service-list">
+      <div class="service-card">
+        <img src="6.jpg" alt="Портретная съёмка">
+        <h3>Портретная съёмка</h3>
+        <p>Студийные и уличные портреты. Работа со светом, позами и психологическим комфортом.</p>
+        <div class="price">от 100 BYN</div>
+        <a href="#contact" class="btn">Записаться</a>
+      </div>
+      <div class="service-card">
+        <img src="5.jpg" alt="Fashion / Editorial">
+        <h3>Fashion / Editorial</h3>
+        <p>Съёмки для брендов и дизайнеров. Команда под проект: стилист, визаж, продюсирование.</p>
+        <div class="price">по запросу</div>
+        <a href="#contact" class="btn">Записаться</a>
+      </div>
+      <div class="service-card">
+        <img src="4.jpg" alt="Коммерческая съёмка">
+        <h3>Коммерческая съёмка</h3>
+        <p>Контент для сайтов и соцсетей: каталоги, кампании, lookbook, репортажи.</p>
+        <div class="price">по запросу</div>
+        <a href="#contact" class="btn">Записаться</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section class="portfolio" id="portfolio">
+    <h2>Портфолио</h2>
+    <div class="portfolio-filters">
+      <button data-filter="all">Все</button>
+      <button data-filter="portrait">Портреты</button>
+      <button data-filter="fashion">Fashion</button>
+      <button data-filter="studio">Студия</button>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item" data-category="portrait">
+        <img src="34.jpg" alt="Портретная съёмка">
+      </div>
+      <div class="portfolio-item" data-category="fashion">
+        <img src="30.jpg" alt="Fashion съёмка">
+      </div>
+      <div class="portfolio-item" data-category="studio">
+        <img src="4.jpg" alt="Студийная съёмка">
+      </div>
+      <div class="portfolio-item" data-category="portrait">
+        <img src="5.jpg" alt="Портретная съёмка">
+      </div>
+      <div class="portfolio-item" data-category="fashion">
+        <img src="6.jpg" alt="Fashion съёмка">
+      </div>
+      <div class="portfolio-item" data-category="studio">
+        <img src="7.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="8.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="9.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="studio">
+        <img src="10.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="11.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="12.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="studio">
+        <img src="13.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="14.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="31.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="studio">
+        <img src="16.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="17.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="18.jpg" alt="Студийная съёмка"> 
+        </div>
+        <div class="portfolio-item" data-category="studio">
+        <img src="19.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="20.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="21.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="studio">
+        <img src="33.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="23.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="24.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="studio">
+        <img src="25.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="26.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="fashion">
+        <img src="27.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="studio">
+        <img src="28.jpg" alt="Студийная съёмка">
+        </div>
+         <div class="portfolio-item" data-category="portrait">
+        <img src="29.jpg" alt="Студийная съёмка">
+        </div>
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- Why me creative -->
+  <section class="why-me" id="why-me">
+    <h2>Почему выбирают меня</h2>
+    <div class="reasons">
+      <div class="reason-card">
+        <span class="icon">✨</span>
+        <h3>Эмоции в кадре</h3>
+        <p>Я ловлю не позы, а настоящие моменты — фотографии живут и рассказывают историю.</p>
+      </div>
+      <div class="reason-card">
+        <span class="icon">🎨</span>
+        <h3>Креативный подход</h3>
+        <p>Каждая съёмка — как арт‑проект: свет, стиль и настроение подбираются индивидуально.</p>
+      </div>
+      <div class="reason-card">
+        <span class="icon">🤝</span>
+        <h3>Комфорт клиента</h3>
+        <p>Я создаю атмосферу доверия, чтобы даже самые скромные чувствовали себя уверенно.</p>
+      </div>
+      <div class="reason-card">
+        <span class="icon">🚀</span>
+        <h3>Команда и опыт</h3>
+        <p>Работаю со стилистами и визажистами, чтобы результат был на уровне глянца.</p>
+      </div>
+      <div class="reason-card"> <span class="icon">📸</span> <h3>Современное оборудование</h3> <p>Использую профессиональную технику и свет, чтобы каждый кадр был технически безупречным.</p> </div> <!-- Новая карточка --> <div class="reason-card"> <span class="icon">🌍</span> <h3>Гибкость и локации</h3> <p>Снимаю в студии, на улице и в уникальных пространствах — подбираем место под ваш стиль.</p> </div> </div> </section>
+    </div>
+  </section>
+
+  <!-- Contact form -->
+  
+    <section class="form-section" id="contact">
+  <h2>Форма для записи</h2>
+  <form action="https://getform.io/f/bejvrqqa" method="POST">
+    <input type="text" name="name" placeholder="Ваше имя" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phone" placeholder="Телефон">
+    <textarea name="message" placeholder="Опишите задачу: жанр, дата, локация" required></textarea>
+    <button type="submit">Записаться</button>
+  </form>
+</section>
+
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    // Lightbox
+    const items = document.querySelectorAll('.portfolio-item img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.close');
+
+    items.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display
+
+                lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    // Filters
+    const filterBtns = document.querySelectorAll('.portfolio-filters button');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-filter');
+        portfolioItems.forEach(item => {
+          item.style.display = (category === 'all' || item.dataset.category === category) ? 'block' : 'none';
+        });
+      });
+    });
+
+    
+// Обработчики кнопок
+const bookingButtons = document.querySelectorAll('.btn, .button.secondary');
+bookingButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    alert('Спасибо за интерес! Заполните форму ниже 👇');
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Плавная прокрутка по меню
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href').substring(1);
+    const targetSection = document.getElementById(targetId);
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Бургер-меню
+const burger = document.getElementById('burger');
+const nav = document.querySelector('header nav');
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  burger.classList.toggle('open');
+});
+
+$(document).ready(function(){ $("nav a").click(function(e){ e.preventDefault(); 
+  // отключаем резкий переход 
+  const targetId = $(this).attr("href"); const headerHeight = $("header").outerHeight();
+  // учитываем фиксированный 
+  $("html, body").animate({ scrollTop: $(targetId).offset().top - headerHeight }, 800); }); });
+  
+</script>
+</body>
+</html>
+
+
